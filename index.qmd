@@ -10,12 +10,80 @@ date-format: long
 
 \[\~ 200 words\]
 
-Clearly stated background and questions / hypotheses / problems being addressed. Sets up the analysis in an interesting and compelling way. Include figures if you like.
+This study aims to investigate the effects of different historical developments of ideological spectrum (left/right) on the relationship between urban-rural population distribution and the general election voting. 
+
+There are noted findings in the political science literature that rural areas tend to vote for right wing parties while more urban areas for left. However, different countries present different political histories, and in particular, the development of the breadth of left-right spectrum and the voters' loyalty to their ideologies over time. 
+
+In this project, I compare the presidential elections of France-2022 and the USA-2020. I analyze how different the relationship between urban-rural population distribution and left-right voting behavior in France and in the USA. 
+
+I hypothesize that two reasons will effect differences in this relationship: first is the stronger tradition of left-wing politics in France; and the second is the wider spectrum of left-wing ideologies. The longer history of leftism can create a closer political affiliation between the rural population and the left-wing parties. The wider spectrum of political ideologies, on the other hand, can present various opportunities for political parties to establish rapport with the rural populations. This is because in a wider political spectrum, not only the number of parties are higher, but also the substantial issue positions adopted by parties can offer a higher variety in their combinations. In a biparty system, issue positions, such as A, B, C, D, are divided into two, while in a multiparty system the issue positions are not only divided into more sections, but also they are adopted by parties with overlaps such as Party-X can adopt A and B while Party-y can adopt B and D. Since France has a multi-party system, multiple parties can address the interests of the rural voters in different ways, preventing the concentration of vote. 
 
 # Materials and methods
 
 \[\~ 200 words\]
 
+Data 
+
+French presidential elections in 2022
+
+https://www.data.gouv.fr/datasets/election-presidentielle-des-10-et-24-avril-2022-resul-
+tats-definitifs-du-1er-tour/
+
+```{r}
+download.file(
+  url = "https://www.data.gouv.fr/api/1/datasets/r/98eb9dab-f328-4dee-ac08-ac17211357a8",
+  destfile = "data/france_election_2022_R1_communes.csv",
+  mode = "wb"
+)
+```
+French urban-rural population (last update 2020)
+
+ https://www.insee.fr/fr/information/4802589
+ 
+```{r}
+download.file(
+  url = "https://www.insee.fr/fr/statistiques/fichier/4802589/UU2020_au_01-01-2025.zip",
+  destfile = "data/france_UU2020_commune.zip",
+  mode = "wb"
+)
+```
+US presidential elections in 2020
+
+https://
+dataverse.harvard.edu/dataset.xhtml?persistentId=doi%3A10.7910%2FDVN%2FVOQCHQ&
+
+[Download the CSV](data/countypres_2000-2024.csv)
+```r
+data_US_elec <- readr::read_csv("data/countypres_2000-2024.csv")
+```
+
+American urban-rural population (last update 2023)
+
+ https://
+www.ers.usda.gov/data-products/rural-urban-continuum-codes
+
+```{r}
+download.file(
+  url = "https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/53251/Ruralurbancontinuumcodes2023.csv?v=36152",
+  destfile = "data/us_rucc_2023.csv",
+  mode = "wb"
+)
+```
+The Code
+
+```{r}
+install.packages("sf")
+install.packages("dplyr")
+install.packages("readr")
+install.packages("ggplot2")
+install.packages("tigris")
+install.packages("classInt")
+install.packages("scales")
+install.packages("janitor")
+install.packages("stringr")
+install.packages("units")
+
+```
 Narrative: Clear narrative description of the data sources and methods. Includes data from at least two sources that were integrated / merged in R.
 
 Code: The code associated with the project is well organized and easy to follow. Demonstrates mastery of R graphics and functions.
